@@ -7,6 +7,7 @@ const jsonStorage = path.join(appData, 'Real-Time-Services');
 // console.log(jsonStorage);
 
 let default_server_list = ["DESKTOP-G5NC17C","BMSIHCMVMDEV5","BMSIHCMVMDEV2"];
+
 const server_list = {"list": default_server_list};
 const dataList = document.getElementById('server-list');
 // console.log(fs.existsSync(path.join(jsonStorage, 'server_list.json')));
@@ -15,6 +16,9 @@ if(!fs.existsSync(path.join(jsonStorage, 'server_list.json'))){
     //     if (err) throw err;
     //     console.log('The file has been saved!');
     // });
+    if(!fs.existsSync(jsonStorage)) {
+        fs.mkdirSync(jsonStorage);
+    }
     fs.writeFileSync(path.join(jsonStorage, "server_list.json"), JSON.stringify(server_list));
     // fs.writeFileSync("S:/Learnings/Electron/test.json", server_list);
 } else {
