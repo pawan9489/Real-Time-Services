@@ -24,23 +24,23 @@
     <!-- <script type="text/javascript" src="materialize/jquery-3.3.1.js"></script> -->
     <script type="text/javascript" src="materialize/jquery-ui.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-    <script type="text/javascript" src="scripts.js"></script>
     <div class="container">
         <h3 class="center">Services</h3>
-        <input type="text" name="host" id="server" placeholder="Server Name" value="DESKTOP-G5NC17C" required />
-        <input type="submit" class="btn waves-effect waves-light" onClick="getServicesList()" value="Fetch"/>
-        <h5 id="error" class="center"></h5> 
-        <div id="loader" class="loaderBox center" style="display:none">
         
-            <div class="loadAnim">
-                
+        <input type="text" list="server-list" name="host" id="server" placeholder="e.g. BMSIHCMVMDEV5" required />
+        <datalist id="server-list"></datalist>
+        <input type="submit" class="btn waves-effect waves-light" onClick="getServicesList()" value="Fetch"/>
+        
+        <h5 id="error" class="center"></h5> 
+        
+        <div id="loader" class="loaderBox center" style="display:none">
+            <div class="loadAnim center">
                 <div class="loadeAnim1"></div>
                 <div class="loadeAnim2"></div>
                 <div class="loadeAnim3"></div>
-                
             </div>
-            
         </div>
+        
         <table id="table" class="striped" style="display:none">
             <thead>
                 <tr>
@@ -51,9 +51,9 @@
             </thead>
             <tbody id="tablebody">
             </tbody>
-        </table>     
+        </table>   
+
     </div>
-    <!--Import jQuery before materialize.js-->
-    
+    <script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>
