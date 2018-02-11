@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    <script src="scripts.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>Services</h1>
+    <div class="container">
+        <h3 class="center">Services</h3>
+        <input type="text" name="host" id="server" placeholder="Server Name">
+        <button class="btn waves-effect waves-light" type="submit" onclick="getServicesList()">Fetch</button>
+        <ul id="list"></ul> 
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>DisplayName</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <td>iHCM-Queued-Task</td>
+                    <td>Queue</td>
+                    <td>Running</td>
+                </tr>
+                <tr>
+                    <td>iHCM-Workflow</td>
+                    <td>Workflow</td>
+                    <td>Stopped</td>
+                </tr>
+                <tr>
+                    <td>iHCM-Queued-Task</td>
+                    <td>Lollipop</td>
+                    <td>$7.00</td>
+                </tr>
+            </tbody>
+        </table>     
+    </div>
+    <!--Import jQuery before materialize.js-->
 </body>
 </html>

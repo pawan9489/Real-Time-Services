@@ -13,6 +13,6 @@ app.on('ready', function(){
         protocol: 'file',
         slashes: true
     }));
-
-    Menu.setApplicationMenu(null)
+    
+    // Menu.setApplicationMenu(null)
 })
