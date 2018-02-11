@@ -10,6 +10,9 @@ function getServicesList() {
     if (host != null && host != "") {
         console.log(host);
         let gave_proper_host_name = true;
+        document.getElementById('error').innerHTML = '';
+        document.getElementById('loader').style.display = "";
+        document.getElementById('table').style.display = "none";
         const { spawn } = require('child_process');
         // const ps = spawn('powershell.exe', ['-ExecutionPolicy', 'ByPass', '-File', 'services.ps1', '-hostName', host, '-outputPath', 'C:\\Real-Time-Services']);
         // powershell.exe -ExecutionPolicy ByPass -File services.ps1 -hostName "DESKTOP-G5NC17C" -outputPath "C:\Users\Pawan\AppData\Roaming\Real-Time-Services"
@@ -22,11 +25,13 @@ function getServicesList() {
             console.log(`stderr: ${data}`);
             gave_proper_host_name = false;
             document.getElementById('table').style.display = "none";
+            document.getElementById('loader').style.display = "none";
             document.getElementById('error').innerHTML = 'Please Provide Valid Server Details';
         });
 
         ps.on('close', (code) => {
             if(gave_proper_host_name) {
+                document.getElementById('loader').style.display = "none";
                 document.getElementById('error').innerHTML = '';
                 document.getElementById('table').style.display = "";
                 loadServicesToUI();

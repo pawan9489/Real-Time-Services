@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.loaderBox {
+    width: 100%;
+    height: 100%;
+    /* background: #202020; */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.loadAnim {
+    width: 200px;
+    height: 200px;
+    margin-top: 20%;
+    margin-left: 40%;
+    position: relative;
+}
+.loadeAnim1,
+.loadeAnim2,
+.loadeAnim3 {
+    position: absolute;
+    border-radius: 100%;
+    border: 10px solid transparent;
+}
+.loadeAnim1 {
+    width: 150px;
+    height: 150px;
+    border-top: 10px solid #3199df;
+    border-bottom: 10px solid #3498db;
+    top: 15px;
+    left: 15px;
+    animation: leftToRight 2s linear infinite;
+}
+.loadeAnim2 {
+    width: 130px;
+    height: 130px;
+    border: 10px solid rgb(129, 199, 50);
+    top: 25px;
+    left: 25px;
+}
+.loadeAnim3 {
+    width: 110px;
+    height: 110px;
+    border-right: 10px solid #6b41ce;
+    border-left: 10px solid #4000db;
+    top: 35px;
+    left: 35px;
+    animation: topToBottom 2s linear infinite;
+}
+@keyframes leftToRight {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@keyframes topToBottom {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-360deg);}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
