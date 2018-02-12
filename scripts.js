@@ -104,14 +104,45 @@ function loadServicesToUI(){
 
         td_displayname.innerHTML = displayName;
         td_name.innerHTML = name;
-        td_status.innerHTML = status == 4 ? "Running" : "Stopped";
-
+        // td_status.innerHTML = status == 4 ? "Running" : "Stopped";
         tr.appendChild(td_displayname);
         tr.appendChild(td_name);
+
+
+        if(status == 4) {
+            td_status.innerHTML = "Running";
+        } else {
+            const a = document.createElement("a");
+            a.setAttribute("class", "waves-effect waves-light modal-trigger");
+            a.setAttribute("href", "#modal");
+            a.setAttribute("data-display-name",displayName);
+            a.setAttribute("data-name",name);
+            a.addEventListener('click', openModal);
+            document.getElementById('start').addEventListener('click', closeModal);
+            window.addEventListener('click', outsideClick);
+            a.style.color = "Red";
+            a.innerHTML = "Stopped";
+            td_status.appendChild(a);
+        }
         tr.appendChild(td_status);
         body.appendChild(tr);
     });
 }
+
+function openModal(){
+    document.getElementById('modal').style.display = 'block';
+}
+
+function closeModal(){
+    document.getElementById('modal').style.display = 'none';
+}
+
+function outsideClick(e){
+    const modal = document.getElementById('modal');
+    if(e.target == modal){
+        modal.style.display = 'none';
+    }
+  }
 
 // $(document).ready(function(){
 //     // const availableServers = ["DESKTOP-G5NC17C","BMSIHCMVMDEV5","BMSIHCMVMDEV2"]

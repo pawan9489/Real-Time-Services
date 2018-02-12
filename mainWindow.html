@@ -14,8 +14,8 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="materialize/css/style.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
     <!-- <script type="text/javascript" src="materialize/autocomplete.js"></script> -->
     <title>Real Time Services</title>
@@ -33,26 +33,39 @@
         
         <h5 id="error" class="center"></h5> 
         
-        <div id="loader" class="loaderBox center" style="display:none">
-            <div class="loadAnim center">
-                <div class="loadeAnim1"></div>
-                <div class="loadeAnim2"></div>
-                <div class="loadeAnim3"></div>
+        <div>
+            <div id="loader" class="loaderBox center" style="display:none">
+                <div class="loadAnim center">
+                    <div class="loadeAnim1"></div>
+                    <div class="loadeAnim2"></div>
+                    <div class="loadeAnim3"></div>
+                </div>
             </div>
+            
+            <table id="table" class="striped" style="display:none">                
+                <thead>
+                    <tr>
+                        <th>DisplayName</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tablebody">
+                    <!-- Modal Structure -->
+                    <div id="modal" class="modal modal-fixed-footer modal-backdrop" style="position:fixed;top: 50%;left: 50%;z-index: 10040;overflow: auto;overflow-y: auto;width:400px;height:200px;transform: translate(-50%, -50%);">
+                        <div class="modal-content">
+                            <h4>Modal Header</h4>
+                            <p>A bunch of text</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="start" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Start</a>
+                            <a id="cancel" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+                        </div>
+                    </div>
+                </tbody>
+            </table>   
         </div>
         
-        <table id="table" class="striped" style="display:none">
-            <thead>
-                <tr>
-                    <th>DisplayName</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="tablebody">
-            </tbody>
-        </table>   
-
     </div>
     <script type="text/javascript" src="scripts.js"></script>
 </body>
