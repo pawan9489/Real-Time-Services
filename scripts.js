@@ -118,7 +118,9 @@ function loadServicesToUI(){
             a.setAttribute("data-display-name",displayName);
             a.setAttribute("data-name",name);
             a.addEventListener('click', openModal);
-            document.getElementById('start').addEventListener('click', closeModal);
+            document.getElementById('startMessage').innerText = "Please click Agree to start " + displayName + " Service.";
+            document.getElementById('start').addEventListener('click', startService);
+            document.getElementById('cancel').addEventListener('click', closeModal);
             window.addEventListener('click', outsideClick);
             a.style.color = "Red";
             a.innerHTML = "Stopped";
@@ -131,6 +133,10 @@ function loadServicesToUI(){
 
 function openModal(){
     document.getElementById('modal').style.display = 'block';
+}
+
+function startService(){
+    document.getElementById('modal').style.display = 'none';
 }
 
 function closeModal(){
