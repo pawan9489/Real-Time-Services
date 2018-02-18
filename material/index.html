@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Materialize -->
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Start your project here-->
+
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- End Page Loading -->
+
+    <!-- Title Bar-->
+    <nav class="nav-extended" style="padding-top:10px;padding-bottom:10px;">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center" style="display:flex;flex-wrap:wrap;">
+                <i class="fa fa-gears small"></i>
+                <h4 style="font-weight:100;">
+                    <strong>
+                        <italic>Services</italic>
+                    </strong>
+                </h4>
+            </a>
+        </div>
+    </nav>
+    <!-- Title Bar-->
+
+    <!-- Card Panel-->
+    <div class="card-panel z-depth-4 main-card">
+        <!-- Search Form-->
+        <div class="form">
+            <form id="search-form">
+                <div style="display:flex;flex-grow:2;justify-content: space-around;">
+                    <div class="input-field server_input" style="margin-right:5px;flex-grow:1.5;">
+                        <i class="fa fa-database prefix small" style="margin-right:20px;margin-top:10px;"></i>
+                        <select size="3">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                        </select>
+                        <label>Server Name</label>
+                    </div>
+                    <a href="#add_server" class="btn-floating btn-small waves-effect waves-light light-blue modal-trigger" style="margin-top:20px;margin-right:50px;">
+                        <i class="material-icons">add</i>
+                    </a>
+                    <!-- Modal Structure -->
+                    <div id="add_server" class="modal modal-fixed-footer" style="overflow-x:hidden;height:240px;">
+                        <div class="modal-content" style="overflow-x:hidden;">
+                            <h4>Add Server to the Collection</h4>
+                            <div class="input-field">
+                                <i class="fa fa-database prefix small" style="margin-right:20px;margin-top:10px;"></i>
+                                <input id="add" type="text" class="validate">
+                                <label for="add">Server Name</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Add</a>
+                        </div>
+                    </div>
+                </div>
+                <span style="margin-right:20px;margin-left:20px;"></span>
+                <div class="input-field" style="flex-grow:1.5;">
+                    <i class="fa fa-gear prefix small" style="margin-right:20px;margin-top:10px;"></i>
+                    <input id="service-like" type="text" class="validate">
+                    <label for="service-like">Service Like</label>
+                </div>
+                <span style="margin-right:20px;margin-left:20px;"></span>
+                <button class="btn waves-effect waves-light" style="margin-left:50px;margin-top:20px;flex-grow:1;" type="submit" name="action">Fetch
+                    <i class="material-icons right">send</i>
+                </button>
+            </form>
+        </div>
+        <!-- Search Form-->
+        <div class="divider"></div>
+        <!-- Table Data-->
+        <div>
+            <div id="data_loader" class="loaderBox center" style="display:none">
+                <div class="loadAnim center">
+                    <div class="loadeAnim1"></div>
+                    <div class="loadeAnim2"></div>
+                    <div class="loadeAnim3"></div>
+                </div>
+            </div>
+            <table class="striped center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Item Name</th>
+                        <th>Item Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Alvin</td>
+                        <td>Eclair</td>
+                        <td>$0.87</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>Jellybean</td>
+                        <td>$3.76</td>
+                    </tr>
+                    <tr>
+                        <td>Jonathan</td>
+                        <td>Lollipop</td>
+                        <td>$7.00</td>
+                    </tr>
+                    <tr>
+                        <td>Alvin</td>
+                        <td>Eclair</td>
+                        <td>$0.87</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>Jellybean</td>
+                        <td>$3.76</td>
+                    </tr>
+                    <tr>
+                        <td>Jonathan</td>
+                        <td>Lollipop</td>
+                        <td>$7.00</td>
+                    </tr>
+                    <tr>
+                        <td>Alvin</td>
+                        <td>Eclair</td>
+                        <td>$0.87</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>Jellybean</td>
+                        <td>$3.76</td>
+                    </tr>
+                    <tr>
+                        <td>Jonathan</td>
+                        <td>Lollipop</td>
+                        <td>$7.00</td>
+                    </tr>
+                    <tr>
+                        <td>Alvin</td>
+                        <td>Eclair</td>
+                        <td>$0.87</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>Jellybean</td>
+                        <td>$3.76</td>
+                    </tr>
+                    <tr>
+                        <td>Jonathan</td>
+                        <td>Lollipop</td>
+                        <td>$7.00</td>
+                    </tr>
+                    <tr>
+                        <td>Alvin</td>
+                        <td>Eclair</td>
+                        <td>$0.87</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>Jellybean</td>
+                        <td>$3.76</td>
+                    </tr>
+                    <tr>
+                        <td>Jonathan</td>
+                        <td>Lollipop</td>
+                        <td>$7.00</td>
+                    </tr>
+                    <tr>
+                        <td>Alvin</td>
+                        <td>Eclair</td>
+                        <td>$0.87</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>Jellybean</td>
+                        <td>$3.76</td>
+                    </tr>
+                    <tr>
+                        <td>Jonathan</td>
+                        <td>Lollipop</td>
+                        <td>$7.00</td>
+                    </tr>
+                    <tr>
+                        <td>Alvin</td>
+                        <td>Eclair</td>
+                        <td>$0.87</td>
+                    </tr>
+                    <tr>
+                        <td>Alan</td>
+                        <td>Jellybean</td>
+                        <td>$3.76</td>
+                    </tr>
+                    <tr>
+                        <td>Jonathan</td>
+                        <td>Lollipop</td>
+                        <td>$7.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Table Data-->
+    </div>
+    <!-- Card Panel-->
+
+    <!-- Footer-->
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © 2018 Copyright Team Endeavours
+                <a class="grey-text text-lighten-4 right" href="#!">PK</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer-->
+
+    <!-- /Start your project here-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <!-- <script type="text/javascript" src="js/popper.min.js"></script> -->
+    <!-- Bootstrap core JavaScript -->
+    <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+    <!-- Materialize core JavaScript -->
+    <script src="js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            /*Preloader*/
+            setTimeout(function () {
+                $('body').addClass('loaded');
+            }, 300);
+
+            $('select').material_select();
+            $('.modal').modal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .5, // Opacity of modal background
+                inDuration: 300, // Transition in duration
+                outDuration: 200, // Transition out duration
+                startingTop: '4%', // Starting top style attribute
+                endingTop: '10%', // Ending top style attribute
+                ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                    // alert("Ready");
+                    console.log(modal, trigger);
+                },
+                complete: function () {
+                    // alert('Closed');
+                } // Callback for Modal close
+            });
+        });
+    </script>
+</body>
+
+</html>
