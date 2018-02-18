@@ -9,7 +9,7 @@ const jsonStorage = path.join(appData, 'Real-Time-Services');
 let default_server_list = ["DESKTOP-G5NC17C","BMSIHCMVMDEV5","BMSIHCMVMDEV2"];
 
 const server_list = {"list": default_server_list};
-const dataList = document.getElementById('server-list');
+const dataList = document.getElementById("server-list");
 // console.log(fs.existsSync(path.join(jsonStorage, 'server_list.json')));
 if(!fs.existsSync(path.join(jsonStorage, 'server_list.json'))){
     // fs.writeFile(path.join(jsonStorage, "server_list.json"), server_list, (err) => {
@@ -27,14 +27,22 @@ if(!fs.existsSync(path.join(jsonStorage, 'server_list.json'))){
     default_server_list = JSON.parse(fileData)["list"];
 }
 
+console.log(default_server_list);
+
 default_server_list.forEach(function(item) {
-    const option = document.createElement('option');
+    const option = document.createElement("option");
     option.value = item;
+    option.innerText = item;
     dataList.appendChild(option);
 });
 
+document.getElementById("add_button").addEventListener("click",addServerToList);
+document.getElementById("fetch_button").addEventListener("click",getServicesList);
+
 function getServicesList() {
+    console.log("Entered in getServicesList");
     const host = document.querySelector(".active.selected");
+    console.log(host);
     if (host != null && host != "") {
         console.log(host);
         const hostName = host.children[0].innerText;
@@ -125,15 +133,29 @@ function loadServicesToUI(){
 }
 
 
-function addServerToList(server_name) {
+function addServerToList() {
     // Update the Server List
-    const fileData = fs.readFileSync(path.join(jsonStorage, "server_list.json"));
-    let existing_lsit = JSON.parse(fileData)["list"];
-    if(!existing_lsit.includes(server_name)){ // Dont contain the Host then only
-        existing_lsit.push(server_name);
-        const option = document.createElement("option");
-        option.value = server_name;
-        dataList.appendChild(option);
-        fs.writeFileSync(path.join(jsonStorage, "server_list.json"), JSON.stringify({"list": existing_lsit}));
+    const add_server_data = document.getElementById("add");
+    if (add_server_data.value != null || add_server_data.value != "") {
+        const server_name = add_server_data.value;
+        const fileData = fs.readFileSync(path.join(jsonStorage, "server_list.json"));
+        let existing_lsit = JSON.parse(fileData)["list"];
+        if(!existing_lsit.includes(server_name)){ // Dont contain the Host then only
+            existing_lsit.push(server_name);
+            const option = document.createElement("option");
+            option.value = server_name;
+            option.innerText = server_name;
+            dataList.appendChild(option);
+            // const li = document.createElement("li");
+            // const innerSpan = document.createElement("span");
+            // li.appendChild(innerSpan);
+            // innerSpan.innerHTML = server_name;
+            // document.querySelector("ul.select-dropdown").appendChild(li);
+            // $("#server-list").trigger("chosen:updated");
+            // $("#server-list").selectmenu("refresh",true);
+            // $("#server-list").hide().show();
+            window.location.reload();
+            fs.writeFileSync(path.join(jsonStorage, "server_list.json"), JSON.stringify({"list": existing_lsit}));
+        }
     }
 }
