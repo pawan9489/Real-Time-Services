@@ -6,6 +6,17 @@ const fs = require('fs');
 const jsonStorage = path.join(appData, 'Real-Time-Services');
 // console.log(jsonStorage);
 
+document.getElementById("min-btn").addEventListener("click", (e) => {
+    const window = remote.getCurrentWindow();
+    window.minimize();
+});
+
+// Close app
+document.getElementById("close-btn").addEventListener("click", (e) => {
+    const window = remote.getCurrentWindow();
+    window.close();
+});
+
 let default_server_list = ["DESKTOP-G5NC17C","BMSIHCMVMDEV5","BMSIHCMVMDEV2"];
 
 const server_list = {"list": default_server_list};
