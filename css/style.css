@@ -254,10 +254,13 @@ main {
   left: 0;
 }
 .loadAnim {
-  width: 200px;
-  height: 200px;
-  margin-top: 20%;
-  margin-left: 40%;
+  /*width: 200px;*/
+  /*height: 200px;*/
+  /*margin-top: 20%;*/
+  /*margin-left: 40%;*/
+  width: 50%;
+  height: 50%;
+  margin: 20px 40%;
   position: relative;
 }
 .loadeAnim1,

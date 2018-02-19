@@ -27,7 +27,7 @@ if(!fs.existsSync(path.join(jsonStorage, 'server_list.json'))){
     default_server_list = JSON.parse(fileData)["list"];
 }
 
-console.log(default_server_list);
+// console.log(default_server_list);
 
 default_server_list.forEach(function(item) {
     const option = document.createElement("option");
@@ -40,26 +40,23 @@ document.getElementById("add_button").addEventListener("click",addServerToList);
 document.getElementById("fetch_button").addEventListener("click",getServicesList);
 
 function getServicesList() {
-    console.log("Entered in getServicesList");
     const host = document.querySelector(".active.selected");
     console.log(host);
     if (host != null && host != "") {
-        console.log(host);
         const hostName = host.children[0].innerText;
         let gave_proper_host_name = true;
-
         // After Fetch Click Remove the Error Message if any, add Loader symbol and remove table and clean the table
         document.getElementById('error').innerHTML = '';
         document.getElementById('error').style.display = "none";
         document.getElementById('data_loader').style.display = "";
         document.getElementById('table').style.display = "none";
-        $("#table tr").remove();
+        $("#tablebody tr").remove();
         // Cleaning of table is done
 
         const { spawn } = require('child_process');
         // const ps = spawn('powershell.exe', ['-ExecutionPolicy', 'ByPass', '-File', 'services.ps1', '-hostName', host, '-outputPath', 'C:\\Real-Time-Services']);
         // powershell.exe -ExecutionPolicy ByPass -File services.ps1 -hostName "DESKTOP-G5NC17C" -outputPath "C:\Users\Pawan\AppData\Roaming\Real-Time-Services"
-        const ps = spawn('powershell.exe', ['-ExecutionPolicy', 'ByPass', '-File', 'services.ps1', '-hostName', host, '-outputPath', jsonStorage]);
+        const ps = spawn('powershell.exe', ['-ExecutionPolicy', 'ByPass', '-File', 'services.ps1', '-hostName', hostName, '-outputPath', jsonStorage]);
         ps.stdout.on('data', (data) => {
             console.log(`stdout: ${data}`);
         });
@@ -70,6 +67,7 @@ function getServicesList() {
             document.getElementById('table').style.display = "none";
             document.getElementById('data_loader').style.display = "none";
             document.getElementById('error').innerHTML = 'Please Provide Valid Server Details';
+            document.getElementById('error').style.display = "";
         });
 
         ps.on('close', (code) => {
@@ -121,8 +119,7 @@ function loadServicesToUI(){
             a.setAttribute("href", "#modal");
             a.setAttribute("data-display-name",displayName);
             a.setAttribute("data-name",name);
-            a.addEventListener('click', openModal);
-            document.getElementById('startMessage').innerText = "Please click Agree to start " + displayName + " Service.";
+            a.addEventListener("click",openModalStartService);
             a.style.color = "Red";
             a.innerHTML = "Stopped";
             td_status.appendChild(a);
@@ -132,6 +129,10 @@ function loadServicesToUI(){
     });
 }
 
+function openModalStartService(e) {
+    const displayName = $(e.srcElement.outerHTML).data("display-name");
+    document.getElementById('startMessage').innerText = "Please click Agree to start " + displayName + " Service.";
+}
 
 function addServerToList() {
     // Update the Server List
