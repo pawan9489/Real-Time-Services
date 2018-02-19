@@ -38,10 +38,10 @@ default_server_list.forEach(function(item) {
 
 document.getElementById("add_button").addEventListener("click",addServerToList);
 document.getElementById("fetch_button").addEventListener("click",getServicesList);
+// document.getElementById("start").addEventListener("click",tryStartingService);
 
 function getServicesList() {
     const host = document.querySelector(".active.selected");
-    console.log(host);
     if (host != null && host != "") {
         const hostName = host.children[0].innerText;
         let gave_proper_host_name = true;
@@ -122,6 +122,7 @@ function loadServicesToUI(){
             a.addEventListener("click",openModalStartService);
             a.style.color = "Red";
             a.innerHTML = "Stopped";
+
             td_status.appendChild(a);
         }
         tr.appendChild(td_status);
@@ -129,9 +130,67 @@ function loadServicesToUI(){
     });
 }
 
+let global_status_clicked = "";
+
+function tryStartingService(statusColumn) {
+    const reg = /(.*Agree to start\s+)(.*)(\s+Service.)/;
+    const startMessage = document.getElementById("startMessage").innerText;
+    const serviceName = startMessage.match(reg)[2];
+
+    // Loading Screen for starting the Service
+    global_status_clicked.lastChild.setAttribute("style",""); // Spin Box
+    global_status_clicked.firstChild.setAttribute("style","display:none;"); //  Anchor Tag
+    // const { spawn } = require('child_process');
+    // // const ps = spawn('powershell.exe', ['-ExecutionPolicy', 'ByPass', '-File', 'services.ps1', '-hostName', host, '-outputPath', 'C:\\Real-Time-Services']);
+    // // powershell.exe -ExecutionPolicy ByPass -File services.ps1 -hostName "DESKTOP-G5NC17C" -outputPath "C:\Users\Pawan\AppData\Roaming\Real-Time-Services"
+    // const ps = spawn('powershell.exe', ['-ExecutionPolicy', 'ByPass', '-File', 'services.ps1', '-hostName', hostName, '-outputPath', jsonStorage]);
+    // ps.stdout.on('data', (data) => {
+    //     console.log(`stdout: ${data}`);
+    // });
+    //
+    // ps.stderr.on('data', (data) => {
+    //     console.log(`stderr: ${data}`);
+    //     gave_proper_host_name = false;
+    //     document.getElementById('table').style.display = "none";
+    //     document.getElementById('data_loader').style.display = "none";
+    //     document.getElementById('error').innerHTML = 'Please Provide Valid Server Details';
+    //     document.getElementById('error').style.display = "";
+    // });
+    //
+    // ps.on('close', (code) => {
+    //     if(gave_proper_host_name) {
+    //         document.getElementById('data_loader').style.display = "none";
+    //         document.getElementById('error').innerHTML = "";
+    //         document.getElementById('table').style.display = "";
+    //         loadServicesToUI();
+    //     }
+    //     console.log(`child process exited with code ${code}`);
+    // });
+}
+
 function openModalStartService(e) {
     const displayName = $(e.srcElement.outerHTML).data("display-name");
-    document.getElementById('startMessage').innerText = "Please click Agree to start " + displayName + " Service.";
+    // console.log(e);
+    document.getElementById("startMessage").innerText = "Please click Agree to start " + displayName + " Service.";
+    // Add Loading Div to the Parent Element of Anchor Tag
+    const td_status = e.srcElement.parentElement;
+    const spinBox = document.createElement("div");
+    const span1 = document.createElement("span");
+    const span2 = document.createElement("span");
+    const span3 = document.createElement("span");
+
+    spinBox.setAttribute("class", "spin-box");
+    spinBox.setAttribute("style","display:none;");
+    span1.setAttribute("class", "s1");
+    span2.setAttribute("class", "s2");
+    span3.setAttribute("class", "s3");
+
+    spinBox.appendChild(span1);
+    spinBox.appendChild(span2);
+    spinBox.appendChild(span3);
+    td_status.appendChild(spinBox);
+    global_status_clicked = td_status;
+    document.getElementById("start").addEventListener("click",tryStartingService);
 }
 
 function addServerToList() {
