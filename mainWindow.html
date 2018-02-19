@@ -10,6 +10,7 @@
     <!-- Materialize -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/gearLoad.css" rel="stylesheet">
 </head>
 <body>
 <!-- Start your project here-->
@@ -23,7 +24,7 @@
 <!-- End Page Loading -->
 
 <!-- Title Bar-->
-<nav class="nav-extended" style="padding-top:10px;padding-bottom:10px;">
+<nav class="nav-extended #03a9f4 light-blue" style="padding-top:10px;padding-bottom:10px;">
     <div class="nav-wrapper">
         <a href="#!" class="brand-logo center" style="display:flex;flex-wrap:wrap;">
             <i class="fa fa-gears small"></i>
@@ -38,7 +39,7 @@
 <!-- Title Bar-->
 
 <!-- Card Panel-->
-<div class="card-panel z-depth-4 main-card">
+<div class="card-panel z-depth-4 main-card #fafafa grey lighten-5">
     <!-- Search Form-->
     <div class="form">
         <form id="search-form">
@@ -75,7 +76,7 @@
                 <label for="service-like">Service Like</label>
             </div>
             <span style="margin-right:20px;margin-left:20px;"></span>
-            <button id="fetch_button" class="btn waves-effect waves-light" style="margin-left:50px;margin-top:20px;flex-grow:1;" type="submit">Fetch
+            <button id="fetch_button" class="btn waves-effect waves-light #03a9f4 light-blue" style="margin-left:50px;margin-top:20px;flex-grow:1;" type="submit">Fetch
                 <i class="material-icons right">send</i>
             </button>
         </form>
@@ -85,11 +86,40 @@
     <h5 id="error" class="center" style="margin-top: 50px;"></h5>
     <!-- Table Data-->
     <div>
-        <div id="data_loader" class="loaderBox center" style="display:none">
-            <div class="loadAnim center">
-                <div class="loadeAnim1"></div>
-                <div class="loadeAnim2"></div>
-                <div class="loadeAnim3"></div>
+        <div id="data_loader" class="gearContainer center" style="display:none">
+            <div>
+                <div class="overlay"></div>
+                <div class="gear one">
+                    <div class="gear-inner">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="gear two">
+                    <div class="gear-inner">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="gear three">
+                    <div class="gear-inner">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="gear four large">
+                    <div class="gear-inner">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <table id="table" style="display:none" class="striped">
@@ -119,7 +149,7 @@
 <!-- Card Panel-->
 
 <!-- Footer-->
-<footer class="page-footer">
+<footer class="page-footer #29b6f6 light-blue lighten-1">
     <div class="footer-copyright">
         <div class="container">
             © 2018 Copyright Team Endeavours

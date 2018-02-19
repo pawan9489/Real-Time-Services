@@ -40,7 +40,8 @@ document.getElementById("add_button").addEventListener("click",addServerToList);
 document.getElementById("fetch_button").addEventListener("click",getServicesList);
 // document.getElementById("start").addEventListener("click",tryStartingService);
 
-function getServicesList() {
+function getServicesList(e) {
+    e.preventDefault();
     const host = document.querySelector(".active.selected");
     if (host != null && host != "") {
         const hostName = host.children[0].innerText;
@@ -132,7 +133,8 @@ function loadServicesToUI(){
 
 let global_status_clicked = "";
 
-function tryStartingService(statusColumn) {
+function tryStartingService(e) {
+    e.preventDefault();
     const reg = /(.*Agree to start\s+)(.*)(\s+Service.)/;
     const startMessage = document.getElementById("startMessage").innerText;
     const serviceName = startMessage.match(reg)[2];
@@ -169,6 +171,7 @@ function tryStartingService(statusColumn) {
 }
 
 function openModalStartService(e) {
+    e.preventDefault();
     const displayName = $(e.srcElement.outerHTML).data("display-name");
     // console.log(e);
     document.getElementById("startMessage").innerText = "Please click Agree to start " + displayName + " Service.";
@@ -193,7 +196,8 @@ function openModalStartService(e) {
     document.getElementById("start").addEventListener("click",tryStartingService);
 }
 
-function addServerToList() {
+function addServerToList(e) {
+    e.preventDefault();
     // Update the Server List
     const add_server_data = document.getElementById("add");
     if (add_server_data.value != null || add_server_data.value != "") {
