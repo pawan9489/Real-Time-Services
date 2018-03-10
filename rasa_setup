@@ -1,0 +1,215 @@
+--------------------------------------------------   SETUP VM   -------------------------------------------------------
+
+Need C++ Build tools atleast c++14 
+Download 2017 Visual studio build tools
+
+But try in other VM's just copying python folder and environment variables
+
+Make Sure that we install Python 64 bit 
+https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe
+Environment Variables (
+C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Scripts\
+C:\Users\Administrator\AppData\Local\Programs\Python\Python36\
+
+)
+pip install rasa_nlu
+pip install rasa_nlu[spacy]
+python -m spacy download en_core_web_lg
+python -m spacy link en_core_web_lg en
+pip install pypiwin32
+
+--------------------------------------------------   Run Rasa Server   -------------------------------------------------------
+C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Lib\site-packages\rasa_nlu\config.py
+Change port number if needed by default 5000.
+
+python -m rasa_nlu.server &
+Invoke-WebRequest -uri http://localhost:5000/parse?q=hello
+# Invoke-WebRequest (windows) === curl(linux)
+Get the Server Status
+Invoke-WebRequest -uri http://localhost:5000/status
+Check the Server Version
+Invoke-WebRequest -uri http://localhost:5000/version
+
+--------------------------------------------------   Training Data   -------------------------------------------------------
+
+Invoke-WebRequest --request POST --header 'content-type: application/json' -d@- --url 'localhost:5000/train?project=test_model&pipeline=keyword'
+
+{
+  "text": "hey",
+  "intent": "greet",
+  "entities": []
+}
+{
+  "text": "show me chinese restaurants",
+  "intent": "restaurant_search",
+  "entities": [
+    {
+      "start": 8,
+      "end": 15,
+      "value": "chinese",
+      "entity": "cuisine"
+    }
+  ]
+}
+
+########################################## Training data ##############
+{
+    "rasa_nlu_data": {
+        "common_examples": [],
+        "regex_features" : [],
+        "entity_synonyms": []
+    }
+}
+
+{
+  "rasa_nlu_data": {
+    "regex_features": [
+      {
+        "name": "zipcode",
+        "pattern": "[0-9]{5}"
+      },
+      {
+        "name": "greet",
+        "pattern": "hey[^\\s]*"
+      }
+    ],
+    "entity_synonyms": [
+      {
+        "value": "chinese",
+        "synonyms": ["Chinese", "Chines", "chines"]
+      },
+      {
+        "value": "vegetarian",
+        "synonyms": ["veggie", "vegg"]
+      }
+    ],
+    "common_examples": [
+      {
+        "text": "hey", 
+        "intent": "greet", 
+        "entities": []
+      }
+	]
+  }
+}
+
+########################################## Training data ##############
+
+Online Trainer --> https://rasahq.github.io/rasa-nlu-trainer/
+Offline Trainer OPEN ONLY IN CHROME
+npm i -g rasa-nlu-trainer
+
+C:\Users\Administrator\.npmrc
+PREVIOUS (
+registry=http://ihcmartifactory.es.ad.adp.com:8083/artifactory/api/npm/ihcm_npm
+export http-proxy=http://websurfing1-tin1.esi.adp.com:8080
+export https-proxy=http://websurfing1-tin1.esi.adp.com:8080
+)
+
+Open Offline Trainer
+rasa-nlu-trainer in your working directory
+
+this will open the editor in your browser
+
+options
+--source -s path to the training file (by default it will be searched recursively in the current directory)
+--port -p the web app will run here (randomly selected by default)
+
+rasa-nlu-trainer --source demo-rasa.json --port 55000
+
+SEE USER INTERACTION LOGS AT (folder in which we run the rasa_nlu.server)
+
+Create a Config file called config_spacy.json or config_mitie.json, depending on the pipeline selected, in your working directory 
+which looks like this
+
+{
+  "pipeline": "spacy_sklearn",
+  "path" : "./projects", // After Finishing which folder to paste
+  "data" : "./data/examples/rasa/demo-rasa.json" // which data should be taken
+}
+
+{
+  "project": "RasaTest",
+  "fixed_model_name": "testModel",
+  "pipeline": "spacy_sklearn",
+  "language": "en",
+  "num_threads": 4,
+  "path": "./projects/",
+  "response_log": "./logs/",
+  "log_level": "INFO",
+  "port": 5040,
+  "data": "./data/demo-rasa.json",
+  "spacy_model_name": "en_core_web_lg"
+}
+Now we can train a spacy model by running:
+
+$ python -m rasa_nlu.train -c sample_configs/config_spacy.json
+##   python -m rasa_nlu.train -c config/config_spacy.json
+
+After a few minutes, rasa NLU will finish training, and you’ll see a new folder 
+named as projects/default/model_YYYYMMDD-HHMMSS with the timestamp when training finished.
+
+
+-------------------------------------- SERVE THE MODEL ---------------------------------
+
+python -m rasa_nlu.server -c sample_configs/config_spacy.json
+##   python -m rasa_nlu.server -c config/config_spacy.json
+
+-------------------------------------- Query the Model ---------------------------------
+
+Use PostMan to test api 
+use get request for (localhost:5000/parse?q=hello)
+
+You can use this to do some error handling in your chatbot (ex: asking the user again if the confidence is low) 
+and it’s also helpful for prioritising which intents need more training data.
+
+------------------------------------- Default Configuration ______________________________________
+C:\Users\Administrator\AppData\Local\Programs\Python\Python36\Lib\site-packages\rasa_nlu\config.py
+Default configurations
+{
+  "project": null,
+  "fixed_model_name": null,
+  "pipeline": [],
+  "language": "en",
+  "num_threads": 1,
+  "max_training_processes": 1,
+  "path": "projects",
+  "response_log": "logs",
+  "storage": null,
+  "config": "config.json",
+  "log_level": "INFO",
+  "port": 5000,
+  "data": null,
+  "emulate": null,
+  "log_file": null,
+  "mitie_file": "data/total_word_feature_extractor.dat",
+  "spacy_model_name": null,
+  "token": null,
+  "cors_origins": [],
+  "aws_endpoint_url": null,
+  "max_number_of_ngrams": 7,
+  "duckling_dimensions": null,
+  "duckling_http_url": null,
+
+  "ner_crf": {
+    "BILOU_flag": true,
+    "features": [
+      ["low", "title", "upper", "pos", "pos2"],
+      ["bias", "low", "word3", "word2", "upper", "title", "digit", "pos", "pos2", "pattern"],
+      ["low", "title", "upper", "pos", "pos2"]],
+    "max_iterations": 50,
+    "L1_c": 1,
+    "L2_c": 1e-3
+  },
+
+  "intent_classifier_sklearn": {
+    "C": [1, 2, 5, 10, 20, 100],
+    "kernel": "linear"
+  }
+}
+____________________________________________________________________________________________________________
+
+
+
+
+
